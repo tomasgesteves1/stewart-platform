@@ -65,7 +65,7 @@ static void calibrateGyro() {
 
 // ---------- Accelerometer offset calibration ----------
 static void calibrateAccelOffsets() {
-  const int N = 200;
+  const int N = 500;
   float rollSum = 0.0f, pitchSum = 0.0f;
 
   Serial.println(F("Calibrating accelerometer... keep platform level and still"));
@@ -135,7 +135,7 @@ void imu_update() {
   // Axis remap
   aux = AccX;
   AccX = AccY;
-  AccY =  aux;
+  AccY = aux;
   AccZ = -AccZ;
 
   float accRoll  = atan2f(AccY, sqrtf(AccX*AccX + AccZ*AccZ)) * 180.0f/PI - rollOffset;
@@ -168,7 +168,7 @@ void imu_update() {
   // Axis remap same as accel
   aux = GyroX;
   GyroX = GyroY;
-  GyroY =  aux;
+  GyroY = aux;
   GyroZ = -GyroZ;
 
   // Remove bias
